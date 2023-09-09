@@ -1,0 +1,10 @@
+name: ItemExpiryDate
+main: antbag\ItemExpiryDate\Main
+author: antbag
+version: 2.0.0
+api: [5.0.0]
+website: 
+
+permissions:
+  expiration.manage.permission:
+    default: op
