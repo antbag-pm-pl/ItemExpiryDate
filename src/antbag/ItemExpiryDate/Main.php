@@ -15,17 +15,24 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
 use pocketmine\utils\SingletonTrait;
 use antbag\ItemExpiryDate\command\ExpirationDateItemCommand;
+use antbag\ItemExpiryDate\lang\PluginLang;
 
 final class Main extends PluginBase implements Listener{
     use SingletonTrait;
 
     public const TAG_EXPIRATION = "expirationDate";
+    private static PluginLang $lang;
 
     protected function onLoad(): void{
         self::setInstance($this);
     }
 
     protected function onEnable(): void{
+        $this->saveResource("lang/kor.yml");
+        $this->saveResource("lang/eng.yml");
+        self::$lang = (new PluginLang())
+            ->setName($lang = $this->getServer()->getLanguage()->getLang())
+            ->setTranslates(yaml_parse(file_get_contents($this->getDataFolder() . "lang/" . $lang . ".yml")));
         $this->getServer()->getCommandMap()->register(strtolower($this->getName()), new ExpirationDateItemCommand());
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
@@ -47,7 +54,7 @@ final class Main extends PluginBase implements Listener{
         if ($this->isOutExpirationDateItem($event->getItem())) {
             $player = $event->getPlayer();
             $player->getInventory()->setItemInHand(VanillaItems::AIR());
-            $player->sendMessage("expiration.out.date.item"));
+            $player->sendMessage(PluginLang::getInstance()->format("expiration.out.date.item"));
         }
     }
 
@@ -60,7 +67,7 @@ final class Main extends PluginBase implements Listener{
         if ($this->isOutExpirationDateItem($event->getItem())) {
             $player = $event->getPlayer();
             $player->getInventory()->setItemInHand(VanillaItems::AIR());
-            $player->sendMessage("expiration.out.date.item");
+            $player->sendMessage(PluginLang::getInstance()->format("expiration.out.date.item"));
         }
     }
 
@@ -77,7 +84,7 @@ final class Main extends PluginBase implements Listener{
         if (!$this->isOutExpirationDateItem($player->getInventory()->getItemInHand()))
             return;
             
-        $player->getInventory()->setItemInHand(ItemFactory::air());
-        $player->sendMessage("expiration.out.date.item");
+        $player->getInventory()->setItemInHand(VanillaItems::AIR());
+        $player->sendMessage(PluginLang::getInstance()->format("expiration.out.date.item"));
     }
 }
