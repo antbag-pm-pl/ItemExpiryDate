@@ -1,6 +1,6 @@
 <?php
 
-namespace antbag\expirationdateitem\lang;
+namespace antbag\ItemExpiryDate\lang;
 
 use pocketmine\utils\SingletonTrait;
 use function str_replace;
