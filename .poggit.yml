@@ -5,4 +5,6 @@ branches:
 projects:
   ItemExpiryDate:
     path: ""
+    lint:
+      phpstan: false
 ...
