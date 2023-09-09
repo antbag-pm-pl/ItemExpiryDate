@@ -42,7 +42,7 @@ final class ExpirationDateItemCommand extends Command{
             return false;
         }
 
-        $item->getNamedTag()->setInt(ExpirationDateItemLoader::TAG_EXPIRATION, $makeTime);
+        $item->getNamedTag()->setInt(Main::TAG_EXPIRATION, $makeTime);
         $item->setLore($item->getLore() + ["", PluginLang::getInstance()->format("expiration.item.lore", ["%date%" => $formatTime], false)]);
         $player->getInventory()->setItemInHand(clone $item);
         $player->sendMessage(PluginLang::getInstance()->format("expiration.command.success"));
