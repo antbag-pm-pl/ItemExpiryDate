@@ -5,7 +5,7 @@ namespace antbag\ItemExpiryDate\command;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use antbag\ItemExpiryDate\ExpirationDateItemLoader;
+use antbag\ItemExpiryDate\Main;
 use antbag\ItemExpiryDate\lang\PluginLang;
 
 final class ExpirationDateItemCommand extends Command{
