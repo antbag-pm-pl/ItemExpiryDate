@@ -77,7 +77,6 @@ final class Main extends PluginBase implements Listener{
      * @priority HIGHEST
      */
     public function onEntityDamage(EntityDamageByEntityEvent $event): void{
-        /** @var Player $player */
         if (!($player = $event->getDamager()) instanceof Player)
             return;
 
